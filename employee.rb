@@ -5,11 +5,21 @@ class Employee #superclass
         @salary = salary
         @name = name
         @title = title
-        @boss = boss 
+        self.boss=(boss)
         #boss= 
         #self = Darren => Employee/Manager
         #parent = Ned =>Sr Manager
         #parent's child = Ned's array of @employees = []
+    end
+
+    def boss=(node)
+        
+        @boss = node
+        if boss == nil
+            return nil
+        else
+            self.boss.employees << self
+        end
     end
   
     def bonus(multiplier)
