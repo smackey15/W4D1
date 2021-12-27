@@ -6,6 +6,7 @@ class Employee #superclass
         @name = name
         @title = title
         @boss = boss 
+        #
     end
   
     def bonus(multiplier)
@@ -28,4 +29,24 @@ class Manager < Employee #subclass
     def bonus(multiplier)
         salary * multiplier
     end
+
+    # calculate the total salary of many employees
+    def total_salary
+        total = 0
+        employees.each do |employee|
+            if !(employee.employees.empty?)
+                total += employee.total_salary
+            else
+            total += employee.salary
+            end 
+        end
+        total
+    end
 end
+
+ned = Manager.new("Ned", 1000000, "Founder")
+darren = Manager.new("Darren", 78000, "TA Manager", ned)
+shawna = Employee.new("Shawna", 12000, "TA", darren)
+david = Employee.new("David", 10000, "TA", darren)
+
+
