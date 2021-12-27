@@ -6,7 +6,10 @@ class Employee #superclass
         @name = name
         @title = title
         @boss = boss 
-        #
+        #boss= 
+        #self = Darren => Employee/Manager
+        #parent = Ned =>Sr Manager
+        #parent's child = Ned's array of @employees = []
     end
   
     def bonus(multiplier)
@@ -27,7 +30,7 @@ class Manager < Employee #subclass
     end
 
     def bonus(multiplier)
-        salary * multiplier
+        self.total_salary * multiplier
     end
 
     # calculate the total salary of many employees
@@ -45,7 +48,7 @@ class Manager < Employee #subclass
 end
 
 ned = Manager.new("Ned", 1000000, "Founder")
-darren = Manager.new("Darren", 78000, "TA Manager", ned)
+darren = Manager.new("Darren", 78000, "TA Manager", ned) # as child/employee of Ned
 shawna = Employee.new("Shawna", 12000, "TA", darren)
 david = Employee.new("David", 10000, "TA", darren)
 
