@@ -1,3 +1,5 @@
+require "byebug"
+
 class Employee #superclass
     attr_reader :salary, :name, :title, :boss
 
@@ -42,15 +44,19 @@ class Manager < Employee #subclass
     def bonus(multiplier)
         self.total_salary * multiplier
     end
-
+    # ned.bonus(5) # => 500_000
+    # darren.bonus(4) # => 88_000
+    # david.bonus(3) # => 30_000
     # calculate the total salary of many employees
     def total_salary
+        
         total = 0
-        employees.each do |employee|
-            if !(employee.employees.empty?)
-                total += employee.total_salary
+        self.employees.each do |employee| 
+      
+            if employee.is_a?(Manager) # if this is a mgr
+                total += employee.salary + employee.total_salary#TAs #+78,000
             else
-            total += employee.salary
+                total += employee.salary #+12,000, +10,000
             end 
         end
         total
