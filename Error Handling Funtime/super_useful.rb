@@ -9,20 +9,23 @@ FRUITS = ["apple", "banana", "orange"]
 def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
+  elsif maybe_fruit == "coffee"
+    puts "thanks for the coffee, please try again"
+    feed_me_a_fruit
   else 
-    begin
-    rescue
-    raise "Not a valid fruit, please try again."
-    retry 
+    raise "Not a valid fruit"
   end 
 end
 
 def feed_me_a_fruit
   puts "Hello, I am a friendly monster. :)"
+    begin
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
   reaction(maybe_fruit) 
+rescue
+  retry
 end  
 
 # PHASE 4
