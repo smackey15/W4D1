@@ -3,7 +3,7 @@ class Board
     attr_reader :grid
 
     def initialize
-        @grid = Array.new(8) {Array.new(8, "NullPiece")} #{NullPiece.instance}
+        @grid = Array.new(8) {Array.new(8) {NullPiece.instance}}
         fill_board
         #@null_piece #fill board with null piece
     end
@@ -42,18 +42,43 @@ class Board
         # 0 <= row < 8 && 0 <= col < 8 #TRUE if Row within 0-7 AND Col is also within 0-7
  
     end
+
+    #def add_piece(pos, piece)
+    #    @grid[pos] = piece
+    #  end
+    #end
+    #
+    #board = Board.new
+    #board.add_piece([0,0], Pawn.new)
     
     private
     def fill_board
-        # setup = ["rook", "knight", "bishop", "king", "queen", "bishop", "knight", "rook"]
-        @grid.map.with_index do |row,idx|
-            if idx == 0 || idx == 1 || idx == 6 || idx == 7
-                row.map! do |el|
-                    el = Piece.new
+         setup = [Rook.new, Knight.new, Bishop.new, King.new, Queen.new, Bishop.new, Knight.new, Rook.new]
+        @grid.map.with_index do |row, idx|
+            if idx == 0 || idx == 7
+                row.map!.with_index do |el, idx2|
+                    el = setup[idx2]
                 end
+            elsif idx == 1 || idx == 6
+                row.map! do |el2|
+                    el2 = Pawn.new 
+                end 
             end
         end
-        
-
+    end
+    
+    def add_piece(pos, piece)
+        @grid[pos] = piece
     end
 end
+
+#def fill_board
+#    setup = [Rook.new, Knight.new, Bishop.new, King.new, Queen.new, Bishop.new, Knight.new, Rook.new]
+#   @grid.map.with_index do |row,idx|
+#       if idx == 0 || idx == 1 || idx == 6 || idx == 7
+#           row.map! do |el|
+#               el = Piece.new
+#           end
+#       end
+#   end
+#end
