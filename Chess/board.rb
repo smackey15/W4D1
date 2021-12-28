@@ -4,7 +4,7 @@ class Board
 
     def initialize
         @grid = Array.new(8) {Array.new(8)} #{NullPiece.instance}
-        #private
+        fill_board
         #@null_piece #fill board with null piece
     end
     
@@ -23,8 +23,11 @@ class Board
         #should update the moved pieces position
 
     end
-
-    #def fill_board
-    #    self[[row, col]] = #pieces
-    #end
+    
+    private
+    def fill_board
+        setup = ["rook", "knight", "bishop", "king", "queen", "bishop", "knight", "rook"]
+        self[0] = setup 
+        self[-1] = setup
+    end
 end
