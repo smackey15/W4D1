@@ -1,4 +1,6 @@
+require_relative "piece"
 class King < Piece
+    include Stepable
     def symbol
     end
     protected
@@ -7,6 +9,7 @@ class King < Piece
 end
 
 class Knight < Piece
+    include Stepable
     def symbol
     end
     protected

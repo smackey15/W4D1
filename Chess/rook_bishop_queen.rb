@@ -1,4 +1,6 @@
+require_relative "piece"
 class Rook < Piece
+    include Slideable
     def symbol
     end
     private
@@ -8,6 +10,7 @@ class Rook < Piece
 end
 
 class Bishop < Piece
+    include Slideable
     def symbol
     end
     private
@@ -16,6 +19,7 @@ class Bishop < Piece
 end
 
 class Queen < Piece
+    include Slideable
     def symbol
     end
     private
