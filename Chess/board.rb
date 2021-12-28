@@ -3,7 +3,7 @@ class Board
     attr_reader :grid
 
     def initialize
-        @grid = Array.new(8) {Array.new(8)} #{NullPiece.instance}
+        @grid = Array.new(8) {Array.new(8, "NullPiece")} #{NullPiece.instance}
         fill_board
         #@null_piece #fill board with null piece
     end
@@ -16,18 +16,44 @@ class Board
         @grid[pos[0]][pos[1]] = val
     end
 
-    def move_piece(start_pos, end_pos) 
-        #raise error if no piece at start_pos
-        #raise error if piece can't move to end_pos 
+    def move_piece(start_pos, end_pos)
+        raise "no piece at start_pos" if self[start_pos] == "NullPiece"
+        raise "piece can't move to end_pos" if !valid_move?(end_pos) 
+        
+        self[end_pos] = self[start_pos]
+        self[start_pos] = "NullPiece"
+        
+        # move the piece
+        # 1. set start_pos = NullPiece
+        # 2. set end_pos = Piece.new
+        
         #should update 2d grid
-        #should update the moved pieces position
+        #should update the moved pieces position 
+    end
 
+    def valid_move?(pos) #(1,1) , (-5, 100)
+        pos.each do |num|
+            return false if num < 0 || num > 7
+        end
+        true
+        # row = pos[0]  #row = 1
+        # col = pos[1]    #col = 1
+
+        # 0 <= row < 8 && 0 <= col < 8 #TRUE if Row within 0-7 AND Col is also within 0-7
+ 
     end
     
     private
     def fill_board
-        setup = ["rook", "knight", "bishop", "king", "queen", "bishop", "knight", "rook"]
-        self[0] = setup 
-        self[-1] = setup
+        # setup = ["rook", "knight", "bishop", "king", "queen", "bishop", "knight", "rook"]
+        @grid.map.with_index do |row,idx|
+            if idx == 0 || idx == 1 || idx == 6 || idx == 7
+                row.map! do |el|
+                    el = Piece.new
+                end
+            end
+        end
+        
+
     end
 end
