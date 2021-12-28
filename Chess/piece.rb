@@ -11,7 +11,9 @@ class Piece
     def empty?
     end
 
-    def valid_moves
+    def valid_moves #SAME AS #MOVES?
+        #return an array of places a piece can move to
+        #implement after subclasses are created
     end
 
     def pos=(val)
@@ -25,5 +27,3 @@ class Piece
     end
 end
 
-class Rook < Piece
-end
