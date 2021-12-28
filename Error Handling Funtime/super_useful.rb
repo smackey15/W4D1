@@ -10,7 +10,10 @@ def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
   else 
-    raise StandardError 
+    begin
+    rescue
+    raise "Not a valid fruit, please try again."
+    retry 
   end 
 end
 
